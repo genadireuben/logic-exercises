@@ -95,4 +95,37 @@ const aprovedStudents = studentsAverageGrades.myFilter(
   (item) => item.average >= 6
 );
 
-console.log(aprovedStudents);
+// console.log(aprovedStudents);
+
+const cart = [
+  { name: "Caneta", qty: 10, price: 7.99, fragile: false },
+  { name: "Impressora", qty: 5, price: 1000, fragile: true },
+  { name: "Caderno", qty: 4, price: 27.1, fragile: false },
+  { name: "Lapis", qty: 3, price: 5.82, fragile: false },
+  { name: "ipad", qty: 2, price: 7500, fragile: true },
+  { name: "Tesoura", qty: 1, price: 19.2, fragile: false },
+  { name: "Computador", qty: 2, price: 5000, fragile: true },
+];
+
+const cartTotal = cart.reduce((acc, curr) => {
+  return (acc += curr.price * curr.qty);
+}, 0);
+
+// console.log(cartTotal);
+
+const totalizer = (total, price) => total + price;
+const productSum = (product) => product.qty * product.price;
+const isFragile = (product) => product.fragile;
+
+const fragileProducts = cart.filter(isFragile);
+
+const totalPrice = fragileProducts.map(productSum);
+
+const fragileProductsAveragePrice =
+  totalPrice.reduce(totalizer, 0) / totalPrice.length;
+
+console.log(fragileProducts);
+
+console.log(totalPrice);
+
+console.log(fragileProductsAveragePrice);
